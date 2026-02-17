@@ -2,6 +2,19 @@
 using namespace std;
 int main()
 {
-    int i = 10;
-    while(i--) cout << i << " ";
+    int n,j;
+    cin >> n;
+    int arr[n];
+    for(int i = 0; i<n;i++) cin >> arr[i];
+    for(int i = 1; i< n;i++)
+    {
+        int key = arr[i];
+        for( j = i - 1; j>= 0 && arr[j] > key;j--)
+        {
+            arr[j+1] = arr[j];
+        }
+        arr[j+1] = key;
+    }
+    for(int i = 0; i<n;i++) cout << arr[i] << " ";
+    return 0;
 }
