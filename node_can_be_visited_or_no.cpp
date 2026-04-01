@@ -1,0 +1,50 @@
+#include <bits/stdc++.h>
+using namespace std;
+vector<int>adj_list[1005];
+int visited[1005];
+void bfs(int src)
+{
+    queue<int> q;
+    q.push(src);
+    visited[src] = true;
+
+    while(!q.empty())
+    {
+        int per = q.front();
+        q.pop();
+
+        cout << per << " ";
+
+        for(int x : adj_list[per])
+        {
+            if(!visited[x])
+            {
+                q.push(x);
+                visited[x] = true;
+            }
+        }
+    }
+    cout << endl;
+}
+int main()
+{
+    int n,e;
+    cin >> n >> e;
+    while(e--)
+    {
+        int a,b;
+        cin >> a >> b;
+        adj_list[a].push_back(b);
+        adj_list[b].push_back(a);
+    }
+    memset(visited,false,sizeof(visited));
+    int src,dist;
+    cin >> src >> dist;
+    bfs(src);
+    if(visited[dist])
+    {
+        cout << "YES" << endl;
+    }
+    else cout << "NO" << endl;
+    return 0;
+}
